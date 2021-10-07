@@ -1,0 +1,28 @@
+name: Deploy PROD
+on:
+  push:
+    tags: # Deploy tag (e.g. v1.0) to production
+      - 'v**'
+jobs:
+  deploy-prod:
+    name: Deploy to prod
+    runs-on: ubuntu-latest
+    steps:
+    - name: Wait for other checks to succeed
+      uses: lewagon/wait-on-check-action@v1.0.0
+      with:
+        ref: ${{ github.ref }}
+        running-workflow-name: 'Deploy to prod'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        wait-interval: 10    
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Install Serverless Framework
+      run: npm install -g serverless
+    - name: Install NPM dependencies
+      run: npm install
+    - name: Serverless AWS authentication and Deploy Lambda functions
+      run: sls config credentials --provider aws --key ${{ secrets.AWS_KEY }} --secret ${{ secrets.AWS_SECRET }} && sls deploy -s prod
+
