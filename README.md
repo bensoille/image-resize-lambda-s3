@@ -6,9 +6,12 @@ __Feel free to apply! Drop us a line with your Linkedin/Github/Twitter/AnySocial
 
 ## To be given :
 ### URL of the application
-https://xlhxubq14k.execute-api.eu-west-1.amazonaws.com/dev/image
+- **DEV environment** : https://xlhxubq14k.execute-api.eu-west-1.amazonaws.com/dev/image
+- **PROD environment** : https://wbwnkacghl.execute-api.eu-west-1.amazonaws.com/prod/image
+  
 ### Address of resized images
-https://bsoille-resized-images-bucket-dev.s3.eu-west-1.amazonaws.com/
+- **DEV environment** : https://bsoille-resized-images-bucket-dev.s3.eu-west-1.amazonaws.com/
+- **PROD environment** : https://bsoille-resized-images-bucket-prod.s3.eu-west-1.amazonaws.com/
 
 ## Summary
 
