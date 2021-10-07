@@ -4,6 +4,11 @@ This test is a part of our hiring process at Aircall for [DevOps positions](http
 
 __Feel free to apply! Drop us a line with your Linkedin/Github/Twitter/AnySocialProfileWhereYouAreActive at jobs@aircall.io__
 
+## To be given :
+### URL of the application
+https://xlhxubq14k.execute-api.eu-west-1.amazonaws.com/dev/image
+### Address of resized images
+https://bsoille-resized-images-bucket-dev.s3.eu-west-1.amazonaws.com/
 
 ## Summary
 
