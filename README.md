@@ -4,7 +4,11 @@ This test is a part of our hiring process at Aircall for [DevOps positions](http
 
 __Feel free to apply! Drop us a line with your Linkedin/Github/Twitter/AnySocialProfileWhereYouAreActive at jobs@aircall.io__
 
-## To be given :
+## Results :
+### Prerequisites
+- An AWS account or IAM, with *programmatic* access
+- Secrets ***AWS_KEY*** and ***AWS_SECRET*** are set up in *github*
+
 ### URL of the application
 - **DEV environment** : https://xlhxubq14k.execute-api.eu-west-1.amazonaws.com/dev/image
 - **PROD environment** : https://wbwnkacghl.execute-api.eu-west-1.amazonaws.com/prod/image
@@ -12,6 +16,27 @@ __Feel free to apply! Drop us a line with your Linkedin/Github/Twitter/AnySocial
 ### Address of resized images
 - **DEV environment** : https://bsoille-resized-images-bucket-dev.s3.eu-west-1.amazonaws.com/
 - **PROD environment** : https://bsoille-resized-images-bucket-prod.s3.eu-west-1.amazonaws.com/
+
+### Try it
+In production, given there is an image *img.jpg* in `cwd`:
+
+```shell
+curl --location --request POST 'https://wbwnkacghl.execute-api.eu-west-1.amazonaws.com/prod/image' \
+--form 'file=@img.jpg' \
+--form 's3Key=img.jpg'
+```
+
+Then, access your resized images at :
+- https://bsoille-resized-images-bucket-prod.s3.eu-west-1.amazonaws.com/img.jpg
+- https://bsoille-resized-images-bucket-prod.s3.eu-west-1.amazonaws.com/img.jpg_200
+- https://bsoille-resized-images-bucket-prod.s3.eu-west-1.amazonaws.com/img.jpg_75
+
+
+## Final notes
+### Problems 
+- There is no TU ; developer should add some
+- There are numerous security problems with node dependencies ; developer should have a look
+
 
 ## Summary
 
@@ -24,7 +49,7 @@ We just have the code.
 
 With the following request to the application, the image is resized, stored and accessible from s3.
 
-```
+```shell
 curl --location --request POST 'http://resize.aircall.com/image' \
 --form 'file=@img.jpg' \
 --form 's3Key=img.jpg'
@@ -49,10 +74,6 @@ Technically speaking, we need to get:
 - URL of the resized images
 - GitHub repo
 
-## Good to know
-
-- packages have to be builded from a linux platform (docker is your friend)
-- input is not a JSON but a form data (multipart/form-data)
 
 ## Nice to have
 
