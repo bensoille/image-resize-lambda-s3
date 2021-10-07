@@ -5,8 +5,16 @@ on:
       - master
 jobs:
   deploy-dev:
+    name: Deploy to dev
     runs-on: ubuntu-latest
     steps:
+    - name: Wait for other checks to succeed
+      uses: lewagon/wait-on-check-action@v1.0.0
+      with:
+        ref: ${{ github.ref }}
+        running-workflow-name: 'Deploy to dev'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        wait-interval: 10    
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
       with:
