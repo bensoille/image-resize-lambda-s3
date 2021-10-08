@@ -1,11 +1,13 @@
 ---
 service: image-resize
 
+plugins:
+  - serverless-slic-watch-plugin
+
 custom:
   bucketName: bsoille-resized-images-bucket-${opt:stage, 'dev'}
-  dashboard:
-    lambda:
-      enabled: true
+  slicWatch:
+    enabled: true
 
 provider:
   name: aws
@@ -24,15 +26,12 @@ provider:
     apiGateway: true
     lambda: true
 
-  # IAM configuration to let the lambda access to S3 bucket.
   iamRoleStatements:
     - Effect: Allow
       Action:
         - s3:PutObject
         - s3:PutObjectAcl
       Resource: "arn:aws:s3:::${self:custom.bucketName}/*"
-plugins:
-  - serverless-plugin-cloudwatch-dashboard
 
 functions:
   image-resize:

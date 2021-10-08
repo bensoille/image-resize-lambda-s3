@@ -10,10 +10,12 @@
   "dependencies": {
     "aws-sdk": "^2.662.0",
     "busboy": "^0.3.1",
+    "serverless": "^2.61.0",
     "sharp": "^0.25.2"
   },
   "devDependencies": {
-    "eslint": "^6.8.0"
+    "eslint": "^6.8.0",
+    "serverless-slic-watch-plugin": "^1.0.2"
   },
   "scripts": {
     "deploy": "serverless deploy"
