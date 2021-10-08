@@ -5,7 +5,7 @@ custom:
   bucketName: bsoille-resized-images-bucket-${opt:stage, 'dev'}
   dashboard:
     lambda:
-      enabled: true  
+      enabled: true
 
 provider:
   name: aws
