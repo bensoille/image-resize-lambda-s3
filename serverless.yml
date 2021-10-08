@@ -29,11 +29,6 @@ provider:
         - s3:PutObjectAcl
       Resource: "arn:aws:s3:::${self:custom.bucketName}/*"
 
-package:
-  pattern:
-    - ./*.js
-    - ./node_modules/**
-
 functions:
   image-resize:
     handler: app.lambdaHandler
