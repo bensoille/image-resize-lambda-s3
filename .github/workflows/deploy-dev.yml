@@ -22,7 +22,7 @@ jobs:
     - name: Install Serverless Framework
       run: npm install -g serverless
     - name: Install serverless plugins
-      run: npm install serverless-plugin-cloudwatch-dashboard     
+      run: serverless plugin install -n serverless-plugin-cloudwatch-dashboard     
     - name: Install NPM dependencies
       run: npm install
     - name: Serverless AWS authentication and Deploy Lambda functions
