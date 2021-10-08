@@ -3,6 +3,9 @@ service: image-resize
 
 custom:
   bucketName: bsoille-resized-images-bucket-${opt:stage, 'dev'}
+  dashboard:
+    lambda:
+      enabled: true  
 
 provider:
   name: aws
@@ -38,10 +41,6 @@ functions:
       - http:
           method: post
           path: /image
-
-dashboard:
-  lambda:
-    enabled: true
 
 resources:
   Resources:
