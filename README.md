@@ -21,7 +21,10 @@ This toolchain is used for CI/CD :
 - [npm](https://www.npmjs.com/)
 
 ## Deployments
-This service is deployed automatically on *github* events. See dedicated paragraph below.
+> This service is deployed automatically on *github* events. See dedicated paragraph below.
+
+Deployment leaves you with following installed infrastructure :
+![Functional architecture](doc/assets/functionalArchi.png)
 
 ### URL of the application
 - **DEV environment** : https://xlhxubq14k.execute-api.eu-west-1.amazonaws.com/dev/image
