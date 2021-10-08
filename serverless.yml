@@ -42,7 +42,7 @@ functions:
 dashboard:
   lambda:
     enabled: true
-    
+
 resources:
   Resources:
     S3Bucket:
