@@ -66,7 +66,9 @@ Logs are stored in *cloudWatch*.
 Could be centralized in some *datadog* service and get easier to parse.
 
 ### Tracing
-Some metrics could be displayed in dashboards at *cloudWatch*.    
+Some metrics are displayed in dashboards at *cloudWatch*. Indeed, one dashboard gets created as per environment :
+- *DEV* : dev-image-resizeDashboard
+- *PROD* : prod-image-resizeDashboard
 
 ## Yet to be done
 - build some *local* environment with SAM or localstack

@@ -18,6 +18,7 @@
     "serverless-slic-watch-plugin": "^1.0.2"
   },
   "scripts": {
-    "deploy": "serverless deploy"
+    "deploy:prod": "serverless deploy -s prod",
+    "deploy:dev": "serverless deploy -s dev"
   }
 }
