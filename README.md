@@ -1,42 +1,27 @@
-# Aircall.io - DevOps technical test
+# Image resize service
 
-This test is a part of our hiring process at Aircall for [DevOps positions](https://aircall.io/jobs#SystemAdministrator). It should take you between 1 and 6 hours depending on your experience.
+This service accepts an image in *POST* http request, and creates 2 resized images from it :
+- 200px wide
+- 75px wide
 
-__Feel free to apply! Drop us a line with your Linkedin/Github/Twitter/AnySocialProfileWhereYouAreActive at jobs@aircall.io__
+Then it uploads these 3 images (the original one and the two resized ones) to some publicly available *S3*
 
+> This *nodejs* service is deployed to *AWS lambda functions*, exposed via *API gateway*
 
-## Summary
-
-An intern in our team has developped an application to resize images. It's working fine.
-
-Unfortunatly, he left the company and we have no documentation or no insights at all about
-what he did.
-
-We just have the code.
-
-With the following request to the application, the image is resized, stored and accessible from s3.
-
-```shell
-curl --location --request POST 'http://resize.aircall.com/image' \
---form 'file=@img.jpg' \
---form 's3Key=img.jpg'
-```
-
-The provided code is working. 
-
-It seems that our intern was using something called Lambda. Don't know what is it.
-
-
-## Solution
-
-### Prerequisites
+## Prerequisites
 - An AWS account or IAM, with *programmatic* access
-- Secrets ***AWS_KEY*** and ***AWS_SECRET*** are set up in *github*
+- Secrets are set up in *github* :
+  - ***AWS_KEY*** : the AWS account access key
+  - ***AWS_SECRET*** : the AWS account secret key
 
-### Used tools
-- Serverless framework
-- github actions
-- npm
+## Used tools
+This toolchain is used for CI/CD :
+- [Serverless framework](https://www.serverless.com/) 
+- [github actions](https://github.com/features/actions)
+- [npm](https://www.npmjs.com/)
+
+## Deployments
+This service is deployed automatically on *github* events. See dedicated paragraph below.
 
 ### URL of the application
 - **DEV environment** : https://xlhxubq14k.execute-api.eu-west-1.amazonaws.com/dev/image
@@ -47,7 +32,7 @@ It seems that our intern was using something called Lambda. Don't know what is i
 - **PROD environment** : https://bsoille-resized-images-bucket-prod.s3.eu-west-1.amazonaws.com/
 
 ### Try it
-In production, being said that you have an image *img.jpg* in your `cwd`:
+In production environment, being said that you have an image *img.jpg* in your `cwd`:
 
 ```shell
 curl --location --request POST 'https://wbwnkacghl.execute-api.eu-west-1.amazonaws.com/prod/image' \
@@ -63,7 +48,7 @@ Then, access your resized images at :
 ## CI / CD
 CI is running, some tests are performed on every `push` git command :
 - Unit tests (none are there so far)
-- Code scanning
+- Code scanning with [codeQL](https://codeql.github.com/)
 - `serverless` file format checking
 
 This service is automatically deployed to `dev` and `prod` environments :
@@ -72,7 +57,7 @@ This service is automatically deployed to `dev` and `prod` environments :
 
 ## Final notes
 
-### Problems 
+### Problems found
 - There is no TU ; developer should add some
 - There were security problems with node dependencies, quite fixed by changing `packages-lock` file ; developer should have a look
 
@@ -83,11 +68,6 @@ Could be centralized in some *datadog* service and get easier to parse.
 ### Tracing
 Some metrics could be displayed in dashboards at *cloudWatch*.    
 
-
-## Nice to have
-
-- logs
-- tracing
-- deployment framework
-- CI/CD
-- auth
+## Yet to be done
+- build some *local* environment with SAM or localstack
+- 

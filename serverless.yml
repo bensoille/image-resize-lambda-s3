@@ -28,6 +28,8 @@ provider:
         - s3:PutObject
         - s3:PutObjectAcl
       Resource: "arn:aws:s3:::${self:custom.bucketName}/*"
+plugins:
+  - serverless-plugin-cloudwatch-dashboard
 
 functions:
   image-resize:
@@ -37,6 +39,10 @@ functions:
           method: post
           path: /image
 
+dashboard:
+  lambda:
+    enabled: true
+    
 resources:
   Resources:
     S3Bucket:
