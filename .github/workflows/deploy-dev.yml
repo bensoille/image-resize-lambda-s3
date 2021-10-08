@@ -20,11 +20,9 @@ jobs:
       with:
         node-version: '12.x'
     - name: Install Serverless Framework
-      run: npm install -g serverless
-    - name: Install serverless plugins
-      run: serverless plugin install -n serverless-plugin-cloudwatch-dashboard     
+      run: npm install -g serverless@2.x    
     - name: Install NPM dependencies
       run: npm install
     - name: Serverless AWS authentication and Deploy Lambda functions
-      run: sls config credentials --provider aws --key ${{ secrets.AWS_KEY }} --secret ${{ secrets.AWS_SECRET }} && sls deploy -s dev
+      run: serverless config credentials --provider aws --key ${{ secrets.AWS_KEY }} --secret ${{ secrets.AWS_SECRET }} && sls deploy -s dev
 
