@@ -47,7 +47,7 @@ It seems that our intern was using something called Lambda. Don't know what is i
 - **PROD environment** : https://bsoille-resized-images-bucket-prod.s3.eu-west-1.amazonaws.com/
 
 ### Try it
-In production, being said that you have is an image *img.jpg* in your `cwd`:
+In production, being said that you have an image *img.jpg* in your `cwd`:
 
 ```shell
 curl --location --request POST 'https://wbwnkacghl.execute-api.eu-west-1.amazonaws.com/prod/image' \
@@ -60,12 +60,21 @@ Then, access your resized images at :
 - https://bsoille-resized-images-bucket-prod.s3.eu-west-1.amazonaws.com/img.jpg_200
 - https://bsoille-resized-images-bucket-prod.s3.eu-west-1.amazonaws.com/img.jpg_75
 
+## CI / CD
+CI is running, some tests are performed on every `push` git command :
+- Unit tests (none are there so far)
+- Code scanning
+- `serverless` file format checking
+
+This service is automatically deployed to `dev` and `prod` environments :
+- **on merge in master** : deploy to DEV environment
+- **on tag** (beginning with a 'v') : deploy to production
 
 ## Final notes
 
 ### Problems 
 - There is no TU ; developer should add some
-- There are numerous security problems with node dependencies ; developer should have a look
+- There were security problems with node dependencies, quite fixed by changing `packages-lock` file ; developer should have a look
 
 ### Logs
 Logs are stored in *cloudWatch*.     
