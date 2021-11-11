@@ -11,7 +11,7 @@
     "aws-sdk": "^2.662.0",
     "busboy": "^0.3.1",
     "serverless": "^2.61.0",
-    "sharp": "^0.25.2"
+    "sharp": "^0.29.2"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
